@@ -5,6 +5,9 @@ import { insertionSortSteps } from "../algorithms/sorting/insertionSort";
 import { quickSortSteps } from "../algorithms/sorting/quickSort";
 import SortingVisualizer from "../components/visualizers/SortingVisualizer";
 import { algorithms } from "../data/algorithms";
+import { linearSearchSteps } from "../algorithms/searching/linearSearch";
+import SearchingVisualizer from "../components/visualizers/SearchingVisualizer";
+import { binarySearchSteps } from "../algorithms/searching/binarySearch";
 
 type AlgorithmCase = "best" | "average" | "worst" | null;
 
@@ -42,6 +45,25 @@ const quickSortPseudocode = [
   "quickSort(left partition)",
   "quickSort(right partition)",
   "if single element mark as sorted",
+];
+
+const linearSearchPseudocode = [
+  "for each index in array",
+  "  check current element",
+  "  if current element equals target",
+  "    return found index",
+  "return not found",
+];
+
+const binarySearchPseudocode = [
+  "set left = 0 and right = n - 1",
+  "while left <= right",
+  "  set middle index",
+  "  check middle element",
+  "  if middle equals target return found",
+  "  if middle < target search right half",
+  "  else search left half",
+  "return not found",
 ];
 
 export default function Visualizer() {
@@ -116,6 +138,31 @@ export default function Visualizer() {
         title="Quick Sort"
         pseudocodeLines={quickSortPseudocode}
         generateSteps={quickSortSteps}
+        onCaseDetected={setDetectedCase}
+      />
+    );
+  }
+
+  if (algorithm.id === "linear-search") {
+    visualizerContent = (
+      <SearchingVisualizer
+        title="Linear Search"
+        pseudocodeLines={linearSearchPseudocode}
+        searchType="linear"
+        generateSteps={linearSearchSteps}
+        onCaseDetected={setDetectedCase}
+      />
+    );
+  }
+
+  if (algorithm.id === "binary-search") {
+    visualizerContent = (
+      <SearchingVisualizer
+        title="Binary Search"
+        pseudocodeLines={binarySearchPseudocode}
+        searchType="binary"
+        generateSteps={binarySearchSteps}
+        autoSortArray
         onCaseDetected={setDetectedCase}
       />
     );

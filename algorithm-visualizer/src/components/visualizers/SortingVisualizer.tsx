@@ -2,9 +2,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import type { AlgorithmRunResult } from "../../types/algorithmResult";
 import type { AnimationStep } from "../../types/animation";
 import { generateRandomArray } from "../../utils/generateRandomArray";
-import BarsChart from "./BarsChart";
-import ControlsPanel from "./ControlsPanel";
-import PseudocodePanel from "./PseudocodePanel";
+import BarsChart from "../views/BarsChart";
+import ControlsPanel from "../controls/ControlsPanel";
+import PseudocodePanel from "../panels/PseudocodePanel";
 
 const DEFAULT_ARRAY_SIZE = 12;
 

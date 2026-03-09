@@ -37,4 +37,29 @@ export const algorithms: Algorithm[] = [
       space: "O(log n)",
     },
   },
+  {
+    id: "linear-search",
+    name: "Linear Search",
+    category: "searching",
+    description: "Checks each element sequentially until the target is found.",
+    complexity: {
+      best: "O(1)",
+      average: "O(n)",
+      worst: "O(n)",
+      space: "O(1)",
+    },
+  },
+  {
+    id: "binary-search",
+    name: "Binary Search",
+    category: "searching",
+    description:
+      "Searches a sorted array by repeatedly checking the middle element.",
+    complexity: {
+      best: "O(1)",
+      average: "O(log n)",
+      worst: "O(log n)",
+      space: "O(1)",
+    },
+  }
 ];

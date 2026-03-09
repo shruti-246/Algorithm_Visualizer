@@ -13,6 +13,10 @@ import StringMatchingVisualizer from "../components/visualizers/StringMatchingVi
 import { horspoolSteps } from "../algorithms/stringMatching/horspool";
 import { boyerMooreSteps } from "../algorithms/stringMatching/boyerMoore";
 import { mergeSortSteps } from "../algorithms/sorting/mergeSort";
+import { bfsTreeSteps } from "../algorithms/tree/bfsTree";
+import TreeVisualizer from "../components/visualizers/TreeVisualizer";
+import { sampleTree } from "../data/sampleTree";
+import { dfsTreeSteps } from "../algorithms/tree/dfsTree";
 
 type AlgorithmCase = "best" | "average" | "worst" | null;
 
@@ -114,6 +118,31 @@ const boyerMoorePseudocode = [
   "shift pattern by bad-character rule",
   "if all characters match return position",
   "return not found",
+];
+
+const bfsTreePseudocode = [
+  "mark root node as visited",
+  "enqueue root node",
+  "while queue is not empty",
+  "  dequeue current node",
+  "  visit current node",
+  "  for each child of current node",
+  "    if child is not visited",
+  "      mark visited and enqueue",
+  "    otherwise skip",
+  "finish traversal",
+];
+
+const dfsTreePseudocode = [
+  "start at root node",
+  "visit node",
+  "mark as visited",
+  "traverse left child",
+  "traverse right child",
+  "backtrack when no children",
+  "continue traversal",
+  "skip visited nodes",
+  "finish traversal"
 ];
 
 export default function Visualizer() {
@@ -257,6 +286,32 @@ export default function Visualizer() {
         title="Boyer-Moore String Matching"
         pseudocodeLines={boyerMoorePseudocode}
         generateSteps={boyerMooreSteps}
+        onCaseDetected={setDetectedCase}
+      />
+    );
+  }
+
+  if (algorithm.id === "bfs") {
+    visualizerContent = (
+      <TreeVisualizer
+        title="Breadth-First Search"
+        pseudocodeLines={bfsTreePseudocode}
+        tree={sampleTree}
+        generateSteps={bfsTreeSteps}
+        traversalType="bfs"
+        onCaseDetected={setDetectedCase}
+      />
+    );
+  }
+
+  if (algorithm.id === "dfs") {
+    visualizerContent = (
+      <TreeVisualizer
+        title="Depth-First Search"
+        pseudocodeLines={dfsTreePseudocode}
+        tree={sampleTree}
+        generateSteps={dfsTreeSteps}
+        traversalType="dfs"
         onCaseDetected={setDetectedCase}
       />
     );

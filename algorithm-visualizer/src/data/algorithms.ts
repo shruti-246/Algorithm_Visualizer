@@ -112,5 +112,30 @@ export const algorithms: Algorithm[] = [
       worst: "O(nm)",
       space: "O(m)",
     },
+  },
+  {
+    id: "bfs",
+    name: "Breadth-First Search",
+    category: "graph",
+    description:
+      "Traverses a graph level by level using a queue.",
+    complexity: {
+      best: "O(V + E)",
+      average: "O(V + E)",
+      worst: "O(V + E)",
+      space: "O(V)",
+    },
+  },
+  {
+    id: "dfs",
+    name: "Depth-First Search",
+    category: "graph",
+    description: "Traverses a tree by exploring as deep as possible before backtracking.",
+    complexity: {
+      best: "O(V + E)",
+      average: "O(V + E)",
+      worst: "O(V + E)",
+      space: "O(V)"
+    }
   }
 ];

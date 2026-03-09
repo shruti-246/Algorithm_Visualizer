@@ -20,7 +20,7 @@ interface SearchingVisualizerProps {
 
 interface SearchMetrics {
   checks: number;
-  totalSteps: number;
+  //totalSteps: number;
   arraySize: number;
 }
 
@@ -30,7 +30,7 @@ function getSearchMetrics(
 ): SearchMetrics {
   return {
     checks: steps.filter((step) => step.type === "check").length,
-    totalSteps: steps.length,
+    //totalSteps: steps.length,
     arraySize,
   };
 }
@@ -106,7 +106,7 @@ export default function SearchingVisualizer({
   const [speed, setSpeed] = useState(500);
   const [metrics, setMetrics] = useState<SearchMetrics>({
     checks: 0,
-    totalSteps: 0,
+    //totalSteps: 0,
     arraySize: initialArray.length,
   });
   const [detectedCase, setDetectedCase] = useState<AlgorithmCase>(null);
@@ -128,7 +128,7 @@ export default function SearchingVisualizer({
     setMessage(`Ready to start ${title}.`);
     setMetrics({
       checks: 0,
-      totalSteps: 0,
+      //totalSteps: 0,
       arraySize: originalArray.length,
     });
 
@@ -147,7 +147,7 @@ export default function SearchingVisualizer({
     setSteps([]);
     setMetrics({
       checks: 0,
-      totalSteps: 0,
+      //totalSteps: 0,
       arraySize: nextArray.length,
     });
     resetPlaybackState();
@@ -162,7 +162,7 @@ export default function SearchingVisualizer({
     setSteps([]);
     setMetrics({
       checks: 0,
-      totalSteps: 0,
+      //totalSteps: 0,
       arraySize: nextArray.length,
     });
     resetPlaybackState();
@@ -376,12 +376,12 @@ export default function SearchingVisualizer({
               <span className="font-semibold text-white">{metrics.checks}</span>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
+            {/* <div className="flex items-center justify-between gap-4">
               <span>Total Steps</span>
               <span className="font-semibold text-white">
                 {metrics.totalSteps}
               </span>
-            </div>
+            </div> */}
 
             <div className="flex items-center justify-between gap-4">
               <span>Array Size</span>

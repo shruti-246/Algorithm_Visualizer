@@ -19,7 +19,7 @@ export default function ControlsPanel({
   onStart,
   onPause,
   onResume,
-  onStep,
+  //onStep,
   onReset,
   onApplyCustomArray,
 }: ControlsPanelProps) {
@@ -91,13 +91,13 @@ export default function ControlsPanel({
           Resume
         </button>
 
-        <button
+        {/* <button
           type="button"
           onClick={onStep}
           className="rounded-xl border border-slate-700 px-4 py-2 text-sm text-slate-200"
         >
           Step
-        </button>
+        </button> */}
 
         <button
           type="button"
@@ -113,9 +113,9 @@ export default function ControlsPanel({
 
         <input
           type="range"
-          min="50"
+          min="1"
           max="1000"
-          step="50"
+          step="5"
           value={speed}
           onChange={(event) => onSpeedChange(Number(event.target.value))}
           className="w-48"

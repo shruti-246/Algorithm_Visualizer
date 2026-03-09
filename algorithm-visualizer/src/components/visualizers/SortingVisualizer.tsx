@@ -21,7 +21,7 @@ interface SortingVisualizerProps {
 interface OperationCounts {
   comparisons: number;
   swaps: number;
-  totalSteps: number;
+  //totalSteps: number;
   arraySize: number;
 }
 
@@ -68,7 +68,7 @@ function getOperationCounts(
   return {
     comparisons,
     swaps,
-    totalSteps: steps.length,
+    //totalSteps: steps.length,
     arraySize,
   };
 }
@@ -108,7 +108,7 @@ export default function SortingVisualizer({
   const [operationCounts, setOperationCounts] = useState<OperationCounts>({
     comparisons: 0,
     swaps: 0,
-    totalSteps: 0,
+    //totalSteps: 0,
     arraySize: initialArray.length,
   });
 
@@ -134,7 +134,7 @@ export default function SortingVisualizer({
     setOperationCounts({
       comparisons: 0,
       swaps: 0,
-      totalSteps: 0,
+      //totalSteps: 0,
       arraySize: originalArray.length,
     });
 
@@ -173,7 +173,7 @@ export default function SortingVisualizer({
     setOperationCounts({
       comparisons: 0,
       swaps: 0,
-      totalSteps: 0,
+      //totalSteps: 0,
       arraySize: nextArray.length,
     });
     resetPlaybackState();
@@ -186,7 +186,7 @@ export default function SortingVisualizer({
     setOperationCounts({
       comparisons: 0,
       swaps: 0,
-      totalSteps: 0,
+      //totalSteps: 0,
       arraySize: values.length,
     });
     resetPlaybackState();
@@ -237,7 +237,7 @@ export default function SortingVisualizer({
     setOperationCounts({
       comparisons: 0,
       swaps: 0,
-      totalSteps: 0,
+      //totalSteps: 0,
       arraySize: originalArray.length,
     });
     resetPlaybackState();
@@ -422,12 +422,12 @@ export default function SortingVisualizer({
               </span>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
+            {/* <div className="flex items-center justify-between gap-4">
               <span>Total Steps</span>
               <span className="font-semibold text-white">
                 {operationCounts.totalSteps}
               </span>
-            </div>
+            </div> */}
 
             <div className="flex items-center justify-between gap-4">
               <span>Array Size</span>

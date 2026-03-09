@@ -21,7 +21,7 @@ interface StringMetrics {
   shifts: number;
   textLength: number;
   patternLength: number;
-  totalSteps: number;
+  //totalSteps: number;
 }
 
 function getStringMetrics(
@@ -34,7 +34,7 @@ function getStringMetrics(
     shifts: steps.filter((step) => step.type === "shift").length,
     textLength,
     patternLength,
-    totalSteps: steps.length,
+    //totalSteps: steps.length,
   };
 }
 
@@ -97,7 +97,7 @@ export default function StringMatchingVisualizer({
     shifts: 0,
     textLength: originalText.length,
     patternLength: originalPattern.length,
-    totalSteps: 0,
+    //totalSteps: 0,
   });
   const [detectedCase, setDetectedCase] = useState<AlgorithmCase>(null);
   const [pendingCase, setPendingCase] = useState<AlgorithmCase>(null);
@@ -122,7 +122,7 @@ export default function StringMatchingVisualizer({
       shifts: 0,
       textLength: originalText.length,
       patternLength: originalPattern.length,
-      totalSteps: 0,
+      //totalSteps: 0,
     });
 
     if (onCaseDetected) {
@@ -144,7 +144,7 @@ export default function StringMatchingVisualizer({
       shifts: 0,
       textLength: exampleText.length,
       patternLength: examplePattern.length,
-      totalSteps: 0,
+      //totalSteps: 0,
     });
     resetPlaybackState();
     setMessage(`Example input loaded. Ready to start ${title}.`);
@@ -161,7 +161,7 @@ export default function StringMatchingVisualizer({
       shifts: 0,
       textLength: nextText.length,
       patternLength: nextPattern.length,
-      totalSteps: 0,
+      //totalSteps: 0,
     });
     resetPlaybackState();
     setMessage(`Custom input applied. Ready to start ${title}.`);
@@ -412,12 +412,12 @@ export default function StringMatchingVisualizer({
               <span className="font-semibold text-white">{metrics.shifts}</span>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
+            {/* <div className="flex items-center justify-between gap-4">
               <span>Total Steps</span>
               <span className="font-semibold text-white">
                 {metrics.totalSteps}
               </span>
-            </div>
+            </div> */}
 
             <div className="flex items-center justify-between gap-4">
               <span>Text Length</span>

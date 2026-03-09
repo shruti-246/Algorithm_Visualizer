@@ -3,6 +3,12 @@ interface BarsChartProps {
   activeIndices: number[];
   sortedIndices: number[];
   pivotIndex?: number | null;
+  rangeStart?: number | null;
+  rangeEnd?: number | null;
+  leftRangeStart?: number | null;
+  leftRangeEnd?: number | null;
+  rightRangeStart?: number | null;
+  rightRangeEnd?: number | null;
 }
 
 export default function BarsChart({
@@ -10,6 +16,12 @@ export default function BarsChart({
   activeIndices,
   sortedIndices,
   pivotIndex = null,
+  rangeStart = null,
+  rangeEnd = null,
+  leftRangeStart = null,
+  leftRangeEnd = null,
+  rightRangeStart = null,
+  rightRangeEnd = null,
 }: BarsChartProps) {
   const maxValue = Math.max(...array, 1);
 
@@ -20,6 +32,24 @@ export default function BarsChart({
         const isSorted = sortedIndices.includes(index);
         const isPivot = pivotIndex === index;
 
+        const isInRange =
+          rangeStart !== null &&
+          rangeEnd !== null &&
+          index >= rangeStart &&
+          index <= rangeEnd;
+
+        const isInLeftRange =
+          leftRangeStart !== null &&
+          leftRangeEnd !== null &&
+          index >= leftRangeStart &&
+          index <= leftRangeEnd;
+
+        const isInRightRange =
+          rightRangeStart !== null &&
+          rightRangeEnd !== null &&
+          index >= rightRangeStart &&
+          index <= rightRangeEnd;
+
         let barColor = "bg-slate-500";
 
         if (isSorted) {
@@ -28,6 +58,12 @@ export default function BarsChart({
           barColor = "bg-violet-500";
         } else if (isActive) {
           barColor = "bg-amber-400";
+        } else if (isInLeftRange) {
+          barColor = "bg-cyan-500";
+        } else if (isInRightRange) {
+          barColor = "bg-blue-500";
+        } else if (isInRange) {
+          barColor = "bg-slate-400";
         }
 
         return (

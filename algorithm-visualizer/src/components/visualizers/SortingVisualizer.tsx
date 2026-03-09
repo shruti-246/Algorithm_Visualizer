@@ -31,6 +31,12 @@ function applySwap(arr: number[], firstIndex: number, secondIndex: number) {
   return next;
 }
 
+function applyOverwrite(arr: number[], index: number, value: number) {
+  const next = [...arr];
+  next[index] = value;
+  return next;
+}
+
 function isAscending(array: number[]): boolean {
   for (let i = 0; i < array.length - 1; i += 1) {
     if (array[i] > array[i + 1]) return false;
@@ -86,6 +92,12 @@ export default function SortingVisualizer({
   const [activeIndices, setActiveIndices] = useState<number[]>([]);
   const [sortedIndices, setSortedIndices] = useState<number[]>([]);
   const [pivotIndex, setPivotIndex] = useState<number | null>(null);
+  const [rangeStart, setRangeStart] = useState<number | null>(null);
+  const [rangeEnd, setRangeEnd] = useState<number | null>(null);
+  const [leftRangeStart, setLeftRangeStart] = useState<number | null>(null);
+  const [leftRangeEnd, setLeftRangeEnd] = useState<number | null>(null);
+  const [rightRangeStart, setRightRangeStart] = useState<number | null>(null);
+  const [rightRangeEnd, setRightRangeEnd] = useState<number | null>(null);
   const [activeLine, setActiveLine] = useState<number | null>(null);
   const [message, setMessage] = useState("Generate an array and start sorting.");
   const [isPlaying, setIsPlaying] = useState(false);
@@ -107,6 +119,12 @@ export default function SortingVisualizer({
     setActiveIndices([]);
     setSortedIndices([]);
     setPivotIndex(null);
+    setRangeStart(null);
+    setRangeEnd(null);
+    setLeftRangeStart(null);
+    setLeftRangeEnd(null);
+    setRightRangeStart(null);
+    setRightRangeEnd(null);
     setActiveLine(null);
     setIsPlaying(false);
     setIsComplete(false);
@@ -130,6 +148,12 @@ export default function SortingVisualizer({
     setIsComplete(true);
     setActiveIndices([]);
     setPivotIndex(null);
+    setRangeStart(null);
+    setRangeEnd(null);
+    setLeftRangeStart(null);
+    setLeftRangeEnd(null);
+    setRightRangeStart(null);
+    setRightRangeEnd(null);
     setMessage("Visualization complete.");
 
     if (enableCaseDetection) {
@@ -191,6 +215,12 @@ export default function SortingVisualizer({
     setActiveIndices([]);
     setSortedIndices([]);
     setPivotIndex(null);
+    setRangeStart(null);
+    setRangeEnd(null);
+    setLeftRangeStart(null);
+    setLeftRangeEnd(null);
+    setRightRangeStart(null);
+    setRightRangeEnd(null);
     setActiveLine(null);
     setIsComplete(false);
     setMessage(`Starting ${title}...`);
@@ -232,6 +262,11 @@ export default function SortingVisualizer({
       setActiveIndices(step.indices);
     }
 
+    if (step.type === "overwrite") {
+      setArray((prev) => applyOverwrite(prev, step.index, step.value));
+      setActiveIndices([step.index]);
+    }
+
     if (step.type === "markSorted") {
       setSortedIndices((prev) => {
         if (prev.includes(step.index)) return prev;
@@ -241,6 +276,21 @@ export default function SortingVisualizer({
 
     if (step.type === "pivot") {
       setPivotIndex(step.index);
+    }
+
+    if (step.type === "setRange") {
+      setRangeStart(step.start);
+      setRangeEnd(step.end);
+    }
+
+    if (step.type === "setLeftRange") {
+      setLeftRangeStart(step.start);
+      setLeftRangeEnd(step.end);
+    }
+
+    if (step.type === "setRightRange") {
+      setRightRangeStart(step.start);
+      setRightRangeEnd(step.end);
     }
 
     if (step.type === "line") {
@@ -330,6 +380,12 @@ export default function SortingVisualizer({
             activeIndices={activeIndices}
             sortedIndices={sortedIndices}
             pivotIndex={pivotIndex}
+            rangeStart={rangeStart}
+            rangeEnd={rangeEnd}
+            leftRangeStart={leftRangeStart}
+            leftRangeEnd={leftRangeEnd}
+            rightRangeStart={rightRangeStart}
+            rightRangeEnd={rightRangeEnd}
           />
         </div>
 
@@ -409,8 +465,23 @@ export default function SortingVisualizer({
             </div>
 
             <div className="flex items-center gap-3">
+              <span className="h-4 w-4 rounded bg-slate-400" />
+              <span>Active range</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="h-4 w-4 rounded bg-cyan-500" />
+              <span>Left half</span>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="h-4 w-4 rounded bg-blue-500" />
+              <span>Right half</span>
+            </div>
+
+            <div className="flex items-center gap-3">
               <span className="h-4 w-4 rounded bg-amber-400" />
-              <span>Comparing / swapping</span>
+              <span>Comparing / writing</span>
             </div>
 
             <div className="flex items-center gap-3">

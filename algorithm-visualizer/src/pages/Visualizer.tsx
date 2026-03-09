@@ -12,6 +12,7 @@ import { bruteForceMatchSteps } from "../algorithms/stringMatching/bruteForceMat
 import StringMatchingVisualizer from "../components/visualizers/StringMatchingVisualizer";
 import { horspoolSteps } from "../algorithms/stringMatching/horspool";
 import { boyerMooreSteps } from "../algorithms/stringMatching/boyerMoore";
+import { mergeSortSteps } from "../algorithms/sorting/mergeSort";
 
 type AlgorithmCase = "best" | "average" | "worst" | null;
 
@@ -49,6 +50,19 @@ const quickSortPseudocode = [
   "quickSort(left partition)",
   "quickSort(right partition)",
   "if single element mark as sorted",
+];
+
+const mergeSortPseudocode = [
+  "if subarray size <= 1 return",
+  "find midpoint",
+  "recursively sort left and right halves",
+  "begin merge of two halves",
+  "compare front elements of both halves",
+  "write smaller value into merged array",
+  "write smaller value into merged array",
+  "copy remaining left values",
+  "copy remaining right values",
+  "mark merged range as sorted",
 ];
 
 const linearSearchPseudocode = [
@@ -174,6 +188,17 @@ export default function Visualizer() {
         title="Quick Sort"
         pseudocodeLines={quickSortPseudocode}
         generateSteps={quickSortSteps}
+        onCaseDetected={setDetectedCase}
+      />
+    );
+  }
+
+  if (algorithm.id === "merge-sort") {
+    visualizerContent = (
+      <SortingVisualizer
+        title="Merge Sort"
+        pseudocodeLines={mergeSortPseudocode}
+        generateSteps={mergeSortSteps}
         onCaseDetected={setDetectedCase}
       />
     );

@@ -38,6 +38,19 @@ export const algorithms: Algorithm[] = [
     },
   },
   {
+    id: "merge-sort",
+    name: "Merge Sort",
+    category: "sorting",
+    description:
+      "Divide-and-conquer sorting algorithm that recursively splits and merges subarrays.",
+    complexity: {
+      best: "O(n log n)",
+      average: "O(n log n)",
+      worst: "O(n log n)",
+      space: "O(n)",
+    },
+  },
+  {
     id: "linear-search",
     name: "Linear Search",
     category: "searching",

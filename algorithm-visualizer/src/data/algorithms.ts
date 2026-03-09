@@ -61,5 +61,43 @@ export const algorithms: Algorithm[] = [
       worst: "O(log n)",
       space: "O(1)",
     },
+  },
+  {
+    id: "brute-force-match",
+    name: "Brute Force String Matching",
+    category: "string-matching",
+    description: "Checks pattern alignment at every position in the text.",
+    complexity: {
+      best: "O(n)",
+      average: "O(nm)",
+      worst: "O(nm)",
+      space: "O(1)",
+    },
+  },
+  {
+    id: "horspool",
+    name: "Horspool String Matching",
+    category: "string-matching",
+    description:
+      "Matches pattern characters from right to left and uses a shift table to skip ahead efficiently.",
+    complexity: {
+      best: "O(n / m)",
+      average: "Sublinear",
+      worst: "O(nm)",
+      space: "O(m)",
+    },
+  },
+  {
+  id: "boyer-moore",
+    name: "Boyer-Moore String Matching",
+    category: "string-matching",
+    description:
+      "Matches from right to left and uses last-occurrence information to skip ahead efficiently.",
+    complexity: {
+      best: "Sublinear",
+      average: "Sublinear",
+      worst: "O(nm)",
+      space: "O(m)",
+    },
   }
 ];

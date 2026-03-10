@@ -1,64 +1,73 @@
 import { Link } from "react-router-dom";
 
+const features = [
+  {
+    title: "Step Playback",
+    description:
+      "Watch algorithm state changes unfold clearly through guided, step-by-step animation.",
+  },
+  {
+    title: "Clean UI",
+    description:
+      "Built like a real frontend product with reusable components and a polished layout.",
+  },
+  {
+    title: "Algorithm Insights",
+    description:
+      "Understand the logic, traversal flow, and complexity behind each visualization.",
+  },
+];
+
 export default function Home() {
   return (
-    <section className="mx-auto flex min-h-[70vh] w-full max-w-7xl flex-col items-center justify-center px-6 py-16 text-center">
-      <p className="mb-3 rounded-full border border-slate-700 px-4 py-1 text-sm text-slate-300">
-        Interactive frontend project
-      </p>
+    <section className="mx-auto w-full max-w-7xl px-6 py-16">
+      <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+        <div className="rounded-full border border-slate-700 bg-slate-900/60 px-5 py-2 text-sm text-slate-200">
+          Interactive Algorithm Visualizer
+        </div>
 
-      <h1 className="max-w-4xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-        Learn algorithms visually, step by step.
-      </h1>
+        <h1 className="mt-8 text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          Learn algorithms visually, step by step.
+        </h1>
 
-      <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-        Interactive algorithm visualizations for sorting, searching, string matching, and tree traversal — built with React and TypeScript.
-      </p>
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300 sm:text-xl">
+          Interactive visualizations for sorting and tree traversal, including
+          Merge Sort, BFS, and DFS — built with React and TypeScript.
+        </p>
 
-      <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-        <Link
-          to="/algorithms"
-          className="rounded-xl bg-cyan-500 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-400"
-        >
-          Explore Algorithms
-        </Link>
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <Link
+            to="/algorithms"
+            className="rounded-2xl bg-cyan-500 px-8 py-4 text-lg font-semibold text-slate-950 transition hover:bg-cyan-400"
+          >
+            Start Visualizing
+          </Link>
 
-        <a
-          href="#features"
-          className="rounded-xl border border-slate-600 px-6 py-3 font-semibold text-slate-200 transition hover:border-slate-400 hover:text-white"
-        >
-          Learn More
-        </a>
+          <a
+            href="https://github.com/shruti-246/Algorithm_Visualizer"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-2xl border border-slate-700 px-8 py-4 text-lg font-semibold text-white transition hover:border-cyan-400 hover:text-cyan-300"
+          >
+            View GitHub
+          </a>
+        </div>
       </div>
 
-      <div
-        id="features"
-        className="mt-20 grid w-full max-w-5xl gap-6 md:grid-cols-3"
-      >
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 text-left">
-          <h2 className="text-lg font-semibold text-white">Step Playback</h2>
-          <p className="mt-2 text-sm leading-6 text-slate-300">
-            Watch comparisons, swaps, and state changes one step at a time.
-          </p>
-        </div>
-
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 text-left">
-          <h2 className="text-lg font-semibold text-white">Clean UI</h2>
-          <p className="mt-2 text-sm leading-6 text-slate-300">
-            Built like a real frontend product with reusable components and
-            polished layout.
-          </p>
-        </div>
-
-        <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-6 text-left">
-          <h2 className="text-lg font-semibold text-white">
-            Algorithm Insights
-          </h2>
-          <p className="mt-2 text-sm leading-6 text-slate-300">
-            Understand time complexity, space complexity, and the logic behind
-            each step.
-          </p>
-        </div>
+      <div className="mt-20 grid gap-6 md:grid-cols-3">
+        {features.map((feature) => (
+          <article
+            key={feature.title}
+            className="rounded-2xl border border-slate-800 bg-slate-900/60 p-8 shadow-sm transition hover:border-cyan-400 hover:shadow-lg"
+          >
+            <h2 className="text-2xl font-semibold text-white">
+              {feature.title}
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-300">
+              {feature.description}
+            </p>
+          </article>
+        ))}
       </div>
     </section>
   );

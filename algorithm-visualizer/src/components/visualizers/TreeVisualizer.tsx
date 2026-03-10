@@ -15,13 +15,6 @@ interface TreeVisualizerProps {
   onCaseDetected?: (value: AlgorithmCase) => void;
 }
 
-interface TreeMetrics {
-  visitedCount: number;
-  //totalSteps: number;
-  nodeCount: number;
-  edgeCount: number;
-}
-
 function cloneTree(tree: TreeData): TreeData {
   return {
     rootNodeId: tree.rootNodeId,
@@ -42,20 +35,14 @@ function countEdges(tree: TreeData) {
   }, 0);
 }
 
-function getTreeMetrics(tree: TreeData, steps: TreeStep[]): TreeMetrics {
-  return {
-    visitedCount: steps.filter((step) => step.type === "visit").length,
-    //totalSteps: steps.length,
-    nodeCount: tree.nodes.length,
-    edgeCount: countEdges(tree),
-  };
-}
-
 function calculateChildPosition(parent: TreeNode, side: "left" | "right") {
   const layerSpacing = 120;
   const baseOffset = 180;
   const shrinkPerLayer = 0.6;
-  const offset = Math.max(50, Math.round(baseOffset * Math.pow(shrinkPerLayer, parent.layer)));
+  const offset = Math.max(
+    50,
+    Math.round(baseOffset * Math.pow(shrinkPerLayer, parent.layer)),
+  );
 
   return {
     x: side === "left" ? parent.x - offset : parent.x + offset,
@@ -102,12 +89,6 @@ export default function TreeVisualizer({
   );
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState(500);
-  const [metrics, setMetrics] = useState<TreeMetrics>({
-    visitedCount: 0,
-    //totalSteps: 0,
-    nodeCount: tree.nodes.length,
-    edgeCount: countEdges(tree),
-  });
   const [detectedCase, setDetectedCase] = useState<AlgorithmCase>(null);
   const [pendingCase, setPendingCase] = useState<AlgorithmCase>(null);
 
@@ -125,12 +106,6 @@ export default function TreeVisualizer({
     setDetectedCase(null);
     setPendingCase(null);
     setMessage(`Ready to start ${title}.`);
-    setMetrics({
-      visitedCount: 0,
-      //totalSteps: 0,
-      nodeCount: treeState.nodes.length,
-      edgeCount: countEdges(treeState),
-    });
 
     if (onCaseDetected) {
       onCaseDetected(null);
@@ -152,12 +127,6 @@ export default function TreeVisualizer({
     setDetectedCase(null);
     setPendingCase(null);
     setMessage("Tree reset to the initial root node.");
-    setMetrics({
-      visitedCount: 0,
-      //totalSteps: 0,
-      nodeCount: freshTree.nodes.length,
-      edgeCount: countEdges(freshTree),
-    });
 
     if (onCaseDetected) {
       onCaseDetected(null);
@@ -314,7 +283,6 @@ export default function TreeVisualizer({
     setQueueOrStack([]);
     setTraversalOrder([]);
     setActiveLine(null);
-    setMetrics(getTreeMetrics(treeState, result.steps));
     setMessage(`Starting ${title}...`);
     setIsPlaying(true);
   };
@@ -390,23 +358,6 @@ export default function TreeVisualizer({
     }
   };
 
-  const stepForward = () => {
-    if (currentStepIndex >= steps.length) {
-      finishVisualization();
-      return;
-    }
-
-    const step = steps[currentStepIndex];
-    processStep(step);
-
-    const nextIndex = currentStepIndex + 1;
-    setCurrentStepIndex(nextIndex);
-
-    if (nextIndex >= steps.length) {
-      finishVisualization();
-    }
-  };
-
   useEffect(() => {
     if (!isPlaying) return;
 
@@ -450,8 +401,10 @@ export default function TreeVisualizer({
             </p>
 
             <div className="mt-4 rounded-lg border border-slate-700 bg-slate-950/60 p-3 text-xs text-slate-300">
-              <p className="font-semibold text-slate-200 mb-1">How to build the tree:</p>
-              <ul className="list-disc pl-4 space-y-1">
+              <p className="mb-1 font-semibold text-slate-200">
+                How to build the tree:
+              </p>
+              <ul className="list-disc space-y-1 pl-4">
                 <li>Right-click a node to add left or right children.</li>
                 <li>Click a node to edit its value.</li>
                 <li>Build your tree before starting BFS or DFS.</li>
@@ -465,7 +418,6 @@ export default function TreeVisualizer({
             onStart={startVisualization}
             onPause={pauseVisualization}
             onResume={resumeVisualization}
-            onStep={stepForward}
             onResetTraversal={resetTraversalState}
             onResetTree={resetTree}
           />
@@ -541,13 +493,6 @@ export default function TreeVisualizer({
                 {traversalOrder.length}
               </span>
             </div>
-
-            {/* <div className="flex items-center justify-between gap-4">
-              <span>Total Steps</span>
-              <span className="font-semibold text-white">
-                {metrics.totalSteps}
-              </span>
-            </div> */}
 
             <div className="flex items-center justify-between gap-4">
               <span>Node Count</span>

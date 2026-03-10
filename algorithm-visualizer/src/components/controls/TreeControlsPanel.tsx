@@ -4,7 +4,6 @@ interface TreeControlsPanelProps {
   onStart: () => void;
   onPause: () => void;
   onResume: () => void;
-  onStep: () => void;
   onResetTraversal: () => void;
   onResetTree: () => void;
 }
@@ -15,7 +14,6 @@ export default function TreeControlsPanel({
   onStart,
   onPause,
   onResume,
-  //onStep,
   onResetTraversal,
   onResetTree,
 }: TreeControlsPanelProps) {
@@ -68,9 +66,9 @@ export default function TreeControlsPanel({
 
         <input
           type="range"
-          min="1"
+          min="10"
           max="1000"
-          step="5"
+          step="10"
           value={speed}
           onChange={(event) => onSpeedChange(Number(event.target.value))}
           className="w-48"

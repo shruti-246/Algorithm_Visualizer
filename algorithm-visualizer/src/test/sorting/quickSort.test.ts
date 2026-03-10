@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { quickSortSteps } from "../algorithms/sorting/quickSort";
+import { quickSortSteps } from "../../algorithms/sorting/quickSort";
 
 describe("Quick Sort Step Generator", () => {
   it("should sort array correctly", () => {

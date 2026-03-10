@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { bubbleSortSteps } from "../algorithms/sorting/bubbleSort";
+import { bubbleSortSteps } from "../../algorithms/sorting/bubbleSort";
 
 describe("Bubble Sort Step Generator", () => {
   it("should sort an unsorted array", () => {

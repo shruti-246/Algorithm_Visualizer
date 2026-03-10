@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { insertionSortSteps } from "../algorithms/sorting/insertionSort";
+import { insertionSortSteps } from "../../algorithms/sorting/insertionSort";
 
 describe("Insertion Sort Step Generator", () => {
   it("should sort array correctly", () => {

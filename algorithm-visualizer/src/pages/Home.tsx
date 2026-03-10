@@ -12,8 +12,7 @@ export default function Home() {
       </h1>
 
       <p className="mt-6 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-        A production-style algorithm visualizer built with React, TypeScript,
-        and reusable animation architecture.
+        Interactive algorithm visualizations for sorting, searching, string matching, and tree traversal — built with React and TypeScript.
       </p>
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row">

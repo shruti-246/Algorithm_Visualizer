@@ -370,7 +370,7 @@ export default function SortingVisualizer({
             onStart={startVisualization}
             onPause={pauseVisualization}
             onResume={resumeVisualization}
-            onStep={stepForward}
+            //onStep={stepForward}
             onReset={resetVisualization}
             onApplyCustomArray={applyCustomArray}
           />

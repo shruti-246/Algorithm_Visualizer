@@ -217,6 +217,7 @@ export default function Visualizer() {
         title="Quick Sort"
         pseudocodeLines={quickSortPseudocode}
         generateSteps={quickSortSteps}
+        enableCaseDetection
         onCaseDetected={setDetectedCase}
       />
     );
@@ -228,6 +229,7 @@ export default function Visualizer() {
         title="Merge Sort"
         pseudocodeLines={mergeSortPseudocode}
         generateSteps={mergeSortSteps}
+        enableCaseDetection
         onCaseDetected={setDetectedCase}
       />
     );

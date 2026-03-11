@@ -302,22 +302,22 @@ export default function SortingVisualizer({
     }
   };
 
-  const stepForward = () => {
-    if (currentStepIndex >= steps.length) {
-      finishVisualization();
-      return;
-    }
+  // const stepForward = () => {
+  //   if (currentStepIndex >= steps.length) {
+  //     finishVisualization();
+  //     return;
+  //   }
 
-    const step = steps[currentStepIndex];
-    processStep(step);
+  //   const step = steps[currentStepIndex];
+  //   processStep(step);
 
-    const nextIndex = currentStepIndex + 1;
-    setCurrentStepIndex(nextIndex);
+  //   const nextIndex = currentStepIndex + 1;
+  //   setCurrentStepIndex(nextIndex);
 
-    if (nextIndex >= steps.length) {
-      finishVisualization();
-    }
-  };
+  //   if (nextIndex >= steps.length) {
+  //     finishVisualization();
+  //   }
+  // };
 
   useEffect(() => {
     if (!isPlaying) return;
